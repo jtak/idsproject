@@ -12,6 +12,7 @@ data = data.set_index(data["Date & Time"])
 
 data['weekdays'] = data['Date & Time'].apply(lambda x: x.weekday())
 
+year = str(data["Date & Time"][1].year)
 data = data.drop(['Date & Time'], 1)
 
 weekends = data[data['weekdays'] >=5]
@@ -20,7 +21,5 @@ workdays = data[data['weekdays'] < 5]
 weekends = weekends.drop(['weekdays'], 1)
 workdays = workdays.drop(['weekdays'], 1)
 
-filename = file.split(".")
-
-workdays.to_csv(filename[0] + "_workdays.csv")
-weekends.to_csv(filename[0] + "_weekends.csv")
+workdays.to_csv("./resources/workdays" + year + ".csv")
+weekends.to_csv("./resources/weekends" + year + ".csv")
