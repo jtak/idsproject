@@ -3,7 +3,7 @@ import numpy as np
 import sys
 
 args = sys.argv
-file = args[1]
+file = './resources/daily_averages2014.csv'
 
 data = pd.read_csv(file)
 
