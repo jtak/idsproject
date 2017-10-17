@@ -1,23 +1,26 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib.patches as mpatches
+import sys
 
-data = pd.read_csv("/Users/kasimiraula/Downloads/Ilmanlaatuindeksit2015.xls", sheetname = "Indeksit")
+args = sys.argv
+file = args[1]
 
-#da = data.resample('D').mean()
+data = pd.read_csv(file)
+year = str(data["Date & Time"][0])[0:4]
 
+data["Date & Time"] = pd.to_datetime(data["Date & Time"], dayfirst=True)
+data = data.set_index(data["Date & Time"])
+data = data.drop(['Date & Time'],1)
 
 months = ["January","February","March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 times = ["23:59", "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00", "10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00", "20:00","21:00","22:00","23:00"]
 
-month = data["2016-January"]
-hdata = month[month["Time"] == "01:00"]
 
 month_houravg = pd.DataFrame(columns = data.columns.values)
 i = 0
 for val in months:
-    month = data['2016-' + val]
+    month = data[year + '-' + val]
     for hour in times:
         hourdata = month[month['Time'] == hour]
         hourdata = hourdata.drop(['Time'],1)
@@ -25,13 +28,7 @@ for val in months:
         month_houravg['Time'][i] = val + " " + hour
         i +=1
 
-
-#format="%m/%d/%Y %I:%M:%S %p")
-#month_houravg['Time'] = pd.to_datetime(month_houravg['Time'], format="%m %H:%M")
-#month_houravg = month_houravg.set_index(month_houravg['Time'])
-#month_houravg = month_houravg.drop(['Time'],1)
-
-month_houravg.to_csv("month_houravg.csv")
+month_houravg.to_csv("month_houravg" + year + ".csv")
 
 '''mansku1 = month_houravg["Mannerheimintie"][:24]
 mansku2 = month_houravg["Mannerheimintie"][24:48].reset_index(drop= True)
