@@ -12,6 +12,8 @@ data = data.set_index(data["Date & Time"])
 
 data['weekdays'] = data['Date & Time'].apply(lambda x: x.weekday())
 
+data = data.drop(['Date & Time'], 1)
+
 weekends = data[data['weekdays'] >=5]
 weekdays = data[data['weekdays'] < 5]
 
