@@ -6,10 +6,10 @@ args = sys.argv
 
 file = args[1]
 
-data = pd.read_csv('./resources/' + file)
+data = pd.read_csv(file)
 
 data["Date & Time"] = pd.to_datetime(data["Date & Time"], dayfirst=True)
 data = data.set_index(data["Date & Time"])
-year = data["Date & Time"][1].year
+year = str(data["Date & Time"][1].year)
 data = data.resample('D').mean()
 data.to_csv('./resources/paivakeskiarvot' + year +'.csv')
