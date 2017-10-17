@@ -22,5 +22,5 @@ normalized_data["Date & Time"] = data["Date & Time"]
 for col in data.drop(["Date & Time"], 1):
     normalized_data[col] = data[col].apply(lambda x: x - avgs[col]) 
 
-normalized_data.drop(['Date & Time'], 1).to_csv(
-        "./resources/normalized_daily_averages" + year + ".csv")
+normalized_data = normalized_data.drop(['Date & Time'], 1)
+normalized_data.to_csv("./resources/normalized_daily_averages" + year + ".csv")
