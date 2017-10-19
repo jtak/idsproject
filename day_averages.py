@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import sys
 
 def dayAverages(file):
@@ -15,7 +14,7 @@ def dayAverages(file):
     
 
 args = sys.argv
-if(len(args) == 2):
+if (len(args) == 2):
     dayAverages(args[1])
 else:
     for i in range(2014,2018):

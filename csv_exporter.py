@@ -21,7 +21,5 @@ if(len(args) == 2):
     convertExcelToCsv(args[1])
 else:
     for i in range(2014,2018):
-        file = './resources/excel-files/Ilmanlaatuindeksit' + str(i) + '.xls'
-        if(i == 2016):
-            file = './resources/excel-files/Ilmanlaatuindeksit' + str(i) + '.xlsx'
+        file = './resources/excel-files/Ilmanlaatuindeksit' + str(i) + '.xlsx'
         convertExcelToCsv(file)
