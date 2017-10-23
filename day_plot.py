@@ -23,7 +23,7 @@ def makeImages(year):
     
     colors = ['green','gold', 'orange', 'red', 'purple']
     coord = {'Mannerheimintie' : (775,805), 'Mäkelänkatu2':(785,725), 'Kallio2':(790,755), 'Vartiokylä':(1052,623),'Leppävaara4':(550,635), 'Tikkurila3':(935,400), 'Luukki': (330,310)}
-    weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     
     xsis = []
     ysis = []
