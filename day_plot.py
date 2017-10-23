@@ -17,11 +17,13 @@ def findIndex(value):
 
 def makeImages(year):
     data = pd.read_csv('./resources/daily_averages' + str(year) +'.csv')
-    im =plt.imread('./Images/Seutukartta3.png')
+    data["Date & Time"] = pd.to_datetime(data["Date & Time"])
+    im =plt.imread('./resources/Seutukartta3.png')
     plt.imshow(im)
     
     colors = ['green','gold', 'orange', 'red', 'purple']
     coord = {'Mannerheimintie' : (775,805), 'Mäkelänkatu2':(785,725), 'Kallio2':(790,755), 'Vartiokylä':(1052,623),'Leppävaara4':(550,635), 'Tikkurila3':(935,400), 'Luukki': (330,310)}
+    weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     
     xsis = []
     ysis = []
@@ -40,8 +42,8 @@ def makeImages(year):
             colors1.append(colors[idx])
         scat = plt.scatter(xsis,ysis, c= colors1, s = sizes, edgecolors = 'black')
         plt.axis('off')
-        day = data['Date & Time'][i]
-        text = plt.text(10,40, str(day))
+        day = data['Date & Time'][i].date()
+        text = plt.text(10,40, str(day) + ' ' +weekdays[day.weekday()])
         plt.savefig('./Images/'+ str(year)+'/' +str(day) + '.jpg', transparent = True, bbox_inches = 'tight', pad_inches = 0, dpi= 300)
         scat.remove()
         text.remove()
