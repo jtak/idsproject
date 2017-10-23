@@ -1,13 +1,13 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 data_all = pd.read_excel("/Users/kasimiraula/Documents/projektit/IDS - Airquality/idsproject/resources/excel-files/hki_liikennemaarat.xls")
 traf_val = ['MANNERHEIMINTIE', 'MAKELANKATU', 'HELSINGINKATU', 'ITAVAYLA', 'TIKKURITIE','TURUNVAYLA']
-ch = data_all[data_all['nimi'] == 'MANNERHEIMINTIE']
+
 data_all = data_all[data_all['vuosi'] > 2013]
 data_all = data_all.reset_index()
 data_all = data_all.iloc[:,[2,5,6,7,-1]]
 
-a = data_all[data_all['nimi'] == 'MANNERHEIMINTIE']
 data = pd.DataFrame(columns = data_all.columns.values)
 data = data.reset_index(drop = True)
 
@@ -39,7 +39,7 @@ def unite_rush_hours():
 data = data.reset_index(drop = True)
 data = unite_rush_hours()
 
-def discard_direction():
+def discard_traffic_direction():
     new = []
     for indx in list(range(0,len(data), 48)):
         for val in list(range(indx, indx+24)):
@@ -50,7 +50,4 @@ def discard_direction():
 
 
 data = data.reset_index(drop = True)
-data = discard_direction()
-
-
-
+data = discard_traffic_direction()
