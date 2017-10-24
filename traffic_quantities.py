@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-data_all = pd.read_excel("/Users/kasimiraula/Documents/projektit/IDS - Airquality/idsproject/resources/excel-files/hki_liikennemaarat.xls")
+data_all = pd.read_excel("./resources/excel-files/hki_liikennemaarat.xls")
 traf_val = ['MANNERHEIMINTIE', 'MAKELANKATU', 'HELSINGINKATU', 'ITAVAYLA', 'TIKKURITIE','TURUNVAYLA']
 
 data_all = data_all[data_all['vuosi'] > 2013]
@@ -51,3 +51,61 @@ def discard_traffic_direction():
 
 data = data.reset_index(drop = True)
 data = discard_traffic_direction()
+
+
+def combine_mansku(data):
+    mansku = data[data['nimi'] == 'MANNERHEIMINTIE']
+    mansku = mansku.reset_index(drop=True)
+    
+    new = []
+
+    for year in range(2014, 2017):
+        mansku_y = mansku[mansku['vuosi'] == year].reset_index(drop=True)
+        for i in range(0, 24):
+            newrow = {}
+            row1 = mansku_y.iloc[i]
+            row2 = mansku_y.iloc[i+24]
+            newrow['nimi'] = row1.nimi
+            newrow['aika'] = row1.aika
+            newrow['vuosi'] = row1.vuosi
+            newrow['autot'] = (row1.autot + row2.autot) // 2 # integer division
+            new.append(newrow)
+            
+    return pd.DataFrame(new, columns = ['nimi','aika','vuosi','autot'])
+            
+    
+mansku_avg = combine_mansku(data)
+data = data[data['nimi'] != 'MANNERHEIMINTIE']
+data = data.append(mansku_avg)
+
+data = data.pivot_table('autot', ['vuosi', 'aika'], 'nimi')
+data.reset_index( drop=False, inplace=True )
+
+data.to_csv("./resources/traffic_columns.csv")
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
