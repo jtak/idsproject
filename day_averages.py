@@ -4,7 +4,7 @@ import sys
 def dayAverages(file):
     data = pd.read_csv(file)
     
-    data["Date & Time"] = pd.to_datetime(data["Date & Time"])
+    data["Date & Time"] = pd.to_datetime(data["Date & Time"], dayfirst = True)
     data = data.set_index(data["Date & Time"])
     
     year = str(data["Date & Time"][1].year)

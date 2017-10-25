@@ -8,7 +8,7 @@ def convertExcelToCsv(file):
     data['Date & Time'] = data['Date & Time'].str.replace('24:00', '23:59')
     data.replace(["NoData", "OffScan"], np.NaN, inplace=True)
     
-    data["Date & Time"] = pd.to_datetime(data["Date & Time"])
+    data["Date & Time"] = pd.to_datetime(data["Date & Time"], dayfirst = True)
     data = data.set_index(data["Date & Time"])
     
     year = str(data["Date & Time"][1].year)

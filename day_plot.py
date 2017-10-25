@@ -43,7 +43,7 @@ def makeImages(year):
         scat = plt.scatter(xsis,ysis, c= colors1, s = sizes, edgecolors = 'black')
         plt.axis('off')
         day = data['Date & Time'][i].date()
-        text = plt.text(10,40, str(day) + ' ' +weekdays[day.weekday()])
+        text = plt.text(580,1000, str(day) + ' ' +weekdays[day.weekday()])
         plt.savefig('./Images/'+ str(year)+'/' +str(day) + '.jpg', transparent = True, bbox_inches = 'tight', pad_inches = 0, dpi= 300)
         scat.remove()
         text.remove()
