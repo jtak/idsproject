@@ -33,4 +33,3 @@ else:
     for year in range(2014, 2017):
         file = './resources/raw_data' + str(year) + '.csv'
         split_weekends(file)
-

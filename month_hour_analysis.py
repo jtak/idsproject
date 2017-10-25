@@ -4,7 +4,7 @@ import numpy as np
 import sys
 
 
-def function(file):
+def count_month_hour_avgs(file):
     data = pd.read_csv(file)
     #data = pd.read_csv("./resources/raw_data2014.csv")
     dn = data['Date & Time'].str.split(' ')
@@ -41,8 +41,8 @@ def function(file):
 args = sys.argv
 
 if len(args) == 2:
-    function(args[1])
+    count_month_hour_avgs(args[1])
 else:
     for i in range(2014,2018):
         file = "./resources/raw_data" + str(i) + ".csv"
-        function(file)
+        count_month_hour_avgs(file)
