@@ -4,7 +4,7 @@ import sys
 def split_weekends(file):
     data = pd.read_csv(file)
     
-    data["Date & Time"] = pd.to_datetime(data["Date & Time"], dayfirst=True)
+    data["Date & Time"] = pd.to_datetime(data["Date & Time"])#, dayfirst=True)
     data = data.set_index(data["Date & Time"])
     
     data['weekdays'] = data['Date & Time'].apply(lambda x: x.weekday())
@@ -17,6 +17,9 @@ def split_weekends(file):
     
     weekends = weekends.drop(['weekdays'], 1)
     workdays = workdays.drop(['weekdays'], 1)
+    
+    workdays.sort_index(inplace=True)
+    weekends.sort_index(inplace=True)
     
     workdays.to_csv("./resources/workdays" + year + ".csv")
     weekends.to_csv("./resources/weekends" + year + ".csv")
