@@ -1,5 +1,6 @@
 import pandas as pd
 from mpl_toolkits.axes_grid1 import host_subplot
+import matplotlib.patches as mpatches
 import mpl_toolkits.axisartist as AA
 import matplotlib.pyplot as plt
 import numpy as np
@@ -11,6 +12,14 @@ traffic = pd.read_csv('./resources/traffic_columns.csv')
 def plot_traffic_and_aq(month, placename):    
     placetraffic = traffic[placename]
     place = data15[data15['Date & Time'] == month][placename]
+    
+    monthnames = ['asd', 'January', 'February', 'March', 'April', 'May', 'June', 
+              'July', 'August', 'September', 'October', 'November', 'December']
+    
+    daynames = ['lol', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    
+    colours = ['r', 'g', 'b', 'y', 'orange']
+    
     
     """
     host = host_subplot(111, axes_class=AA.Axes)
@@ -24,7 +33,9 @@ def plot_traffic_and_aq(month, placename):
     
     for weekday in range(0, 5):
         placedata = place.iloc[24*weekday:24*(weekday+1)]
-        ax1.plot(list(range(0,24)), placedata)
+        asd, = ax1.plot(list(range(0,24)), placedata, color=colours[weekday])
+        patch = mpatches.Patch(color=colours[weekday], label=daynames[weekday])
+        plt.legend(handles=[patch])
         #p1, = host.plot(list(range(24)), placedata)
        
         
@@ -41,6 +52,8 @@ def plot_traffic_and_aq(month, placename):
     #par1.set_ylabel("Cars")
     ax1.set_ylim(0, np.round(np.max(place.values), decimals = 0) +10)
     kuva = placename + str(month)
+    plt.text(4, 2600, placename + ", " + monthnames[month])
+    plt.legend()
     plt.savefig(kuva)
     
     #plt.savefig("saatana" + place + str(month) + ".png")
