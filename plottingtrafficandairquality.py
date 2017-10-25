@@ -8,12 +8,10 @@ data14 = pd.read_csv('./resources/month_average_weeks2014.csv')
 data15 = pd.read_csv('./resources/month_average_weeks2015.csv')
 traffic = pd.read_csv('./resources/traffic_columns.csv')
 hesari = traffic['HELSINGINKATU']
-kallio = data15[data15['Date & Time'] == 10]['Kallio2']
-
-def plot_traffic_and_aq():
-#def plot_traffic_and_aq(month, place):
+def plot_traffic_and_aq(month, place):    
+    place = data15[data15['Date & Time'] == month][place]
     host = host_subplot(111, axes_class=AA.Axes)
-    plt.subplots_adjust(right=0.75)
+    #plt.subplots_adjust(right=0.75)
     
     par1 = host.twinx()
     #par2 = host.twinx()
@@ -24,30 +22,38 @@ def plot_traffic_and_aq():
     
     #par2.axis["right"].toggle(all=True)
 
-    kalliodata = kallio.iloc[24*0:24*(0+1)]
     host.set_xlim(0, 25,1)
-    host.set_ylim(0, np.round(np.max(kalliodata.values), decimals = 0) +10)
+    
+    
+    for weekday in range(0, 5):
+        placedata = place.iloc[24*weekday:24*(weekday+1)]
+        #host.set_ylim(0, np.round(np.max(kalliodata.values), decimals = 0) +10)
+        
+        #par2.set_ylabel("Velocity")
+        
+        p1, = host.plot(list(range(24)), placedata)
+        
+        #p3, = par2.plot([0, 1, 2], [50, 30, 15], label="Velocity")
+        
+        #par1.set_ylim(0, np.round(np.max(hesari.values)))
+        #par2.set_ylim(1, 65)
+        
+        #host.legend()
     
     host.set_xlabel("Hour")
     host.set_ylabel("Air quality ")
     par1.set_ylabel("Cars")
-    #par2.set_ylabel("Velocity")
-    
-    p1, = host.plot(list(range(24)), kalliodata, label="Air quality index")
+    host.set_ylim(0, np.round(np.max(place.values), decimals = 0) +10)
     p2, = par1.bar(left= list(range(24)), height= hesari[:24], label="Cars", alpha = 0.5)
-    #p3, = par2.plot([0, 1, 2], [50, 30, 15], label="Velocity")
-    
-    par1.set_ylim(0, np.round(np.max(hesari.values)))
-    #par2.set_ylim(1, 65)
-    
-    #host.legend()
     
     host.axis["left"].label.set_color(p1.get_color())
     par1.axis["right"].label.set_color(p2.get_color())
+        
+        
     #par2.axis["right"].label.set_color(p3.get_color())
 
 
-plot_traffic_and_aq()
+plot_traffic_and_aq(9, 'Kallio2')
 
 '''
 for val in range(0,1):
