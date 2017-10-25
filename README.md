@@ -6,6 +6,9 @@ Keskiarvoviikot _(1 / vuodenaika, tutkitaan mikä mielenkiiintoisin)_
 Kartalla plottaus _(samat datat kuin edellisessä kuvaajassa)_
 
 ## Syys-lokakuu:
+
+Plotattavat asemat: Kallio, MÃ¤kelÃ¤nkatu2, Mannerheimintie, Tikkurila
+
 Keskiarvoviikot _(1 / vuodenaika) (+samat datat kartalla? tarvitaanko?)_
 
 Liikenne _(barplot)_
