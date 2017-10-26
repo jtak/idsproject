@@ -1,9 +1,5 @@
 import pandas as pd
-from mpl_toolkits.axes_grid1 import host_subplot
-import matplotlib.patches as mpatches
-import mpl_toolkits.axisartist as AA
 import matplotlib.pyplot as plt
-import numpy as np
 
 data14 = pd.read_csv('./resources/month_average_weeks2014.csv')
 data15 = pd.read_csv('./resources/month_average_weeks2015.csv')
@@ -29,14 +25,14 @@ def plot_traffic_and_aq(data, month, placename, year):
     
     for weekday in range(0, 5):
         placedata = place.iloc[24*weekday:24*(weekday+1)]
-        asd, = ax1.plot(list(range(0,24)), placedata, color=colours[weekday], label = daynames[weekday])
+        asd, = ax1.plot(list(range(0,24)), placedata, linewidth=2.5, color=colours[weekday], label = daynames[weekday])
         plt.legend(bbox_to_anchor = (1.15,1), loc = 2, borderaxespad = 0)
 
     ax1.set_xlabel("Hour")
     ax1.set_ylabel("Air quality ")
     
     ax2 = ax1.twinx()
-    ax2.bar(left= list(range(24)), height=placetraffic[:24], label="Cars", alpha = 0.5)
+    ax2.bar(left= list(range(24)), height=placetraffic[24:], label="Cars", alpha = 0.5)
     
     ax2.set_ylabel("Cars")
     #ax1.set_ylim(0, np.round(np.max(place.values), decimals = 0) +10)
@@ -55,4 +51,4 @@ months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 for place in interesting_places:
     for month in months:
-        plot_traffic_and_aq(data14, month, place, 2014)
+        plot_traffic_and_aq(data16, month, place, 2016)
