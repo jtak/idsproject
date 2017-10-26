@@ -20,7 +20,6 @@ def plot_traffic_and_aq(data, month, placename, year):
     colours = ['r', 'g', 'b', 'y', 'orange']
     
     
-    #plt.figure(figsize=(8, 6), dpi=100)
     fig, ax1 = plt.subplots(figsize=(8, 6), dpi=100)
     
     for weekday in range(0, 5):
@@ -35,16 +34,15 @@ def plot_traffic_and_aq(data, month, placename, year):
     ax2.bar(left= list(range(24)), height=placetraffic[24:], label="Cars", alpha = 0.5)
     
     ax2.set_ylabel("Cars")
-    #ax1.set_ylim(0, np.round(np.max(place.values), decimals = 0) +10)
     ax1.set_ylim(0, 125)
-    kuva = "./pics/" + placename + str(month) + str(year)
+    kuva = "./" + placename + str(month) + str(year)
     plt.title(placename + ", " + monthnames[month] + " " + str(year))
     plt.legend()
     
     plt.subplots_adjust(right=0.70)
     plt.savefig(kuva)
-    #plt.clf()
-    #plt.cla()
+
+plot_traffic_and_aq(data15, 3, 'Kallio2', 2015)
 
 interesting_places = ['Mannerheimintie', 'Mäkelänkatu2', 'Kallio2', 'Tikkurila3', 'Vartiokylä']
 months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
