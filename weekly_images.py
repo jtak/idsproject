@@ -39,9 +39,9 @@ def drawPoints(data,index):
 
 def drawYearAndMonth(year,month):
     if month < 10:
-        text = '0' + str(month) + ' - 2014'
+        text = '0' + str(month) + ' - ' + str(year)
     else:
-        text = str(month) + ' - 2014'
+        text = str(month) + ' - ' + str(year)
     return plt.text(50,100,text)
     
 def drawDayAndTime(day, hour):
@@ -65,7 +65,7 @@ def makeImages(year, month):
     for i in range(len(data)):
         
         scat = drawPoints(data,i)
-        yearAndMonth = drawYearAndMonth(2014,month)
+        yearAndMonth = drawYearAndMonth(year,month)
         day = data['Date & Time.1'][i]
         hour = data['Date & Time.2'][i]
         dayAndTime = drawDayAndTime(day, hour)
