@@ -56,6 +56,7 @@ def drawDayAndTime(day, hour):
 def makeImages(year, month):
     data = pd.read_csv('./resources/month_average_weeks'+str(year)+'.csv')
     data = data[data['Date & Time'] == month]
+    data.reset_index(drop = True, inplace = True)
     
     image =plt.imread('./resources/Seutukartta3.png')
     plt.imshow(image)
@@ -69,7 +70,7 @@ def makeImages(year, month):
         hour = data['Date & Time.2'][i]
         dayAndTime = drawDayAndTime(day, hour)
         
-        plt.savefig('./Images/2014/'+ str(i)+'-'+str(month) +'-'+str(year) +'.jpg', transparent = True, bbox_inches = 'tight', pad_inches = 0, dpi= 300)
+        plt.savefig('./Images/'+ str(year)+'/'+str(year)+'-' +str(month) +'-'+ str(i)+'.jpg', transparent = True, bbox_inches = 'tight', pad_inches = 0, dpi= 300)
         
         scat.remove()
         yearAndMonth.remove()
@@ -79,9 +80,9 @@ def makeImages(year, month):
 args = sys.argv
 initXYs()
 if len(args) == 3:
-    makeImages(args[1],args[2])
+    makeImages(int(args[1]),int(args[2]))
 else:
-    for year in range(2014,2015):
-        makeImages(year, 1)
+    for year in range(2017,2018):
+        makeImages(year, 3)
 
 #make gif : imagemagick : convert -delay 50 -loop 0 *.jpg animated.gif
