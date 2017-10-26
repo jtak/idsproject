@@ -27,12 +27,12 @@ def findIndex(value):
     else: 
         return 4
     
-def drawPoints(index):
+def drawPoints(data,index):
     sizes = []
     colors1 = []
     for key in coord:
         value = data[key][index]
-        sizes.append(value/2)
+        sizes.append((value/4)**1.8)
         idx = findIndex(value)
         colors1.append(colors[idx])
     return plt.scatter(xsis,ysis, c= colors1, s = sizes, edgecolors = 'black')
@@ -63,13 +63,13 @@ def makeImages(year, month):
         
     for i in range(len(data)):
         
-        scat = drawPoints(i)
+        scat = drawPoints(data,i)
         yearAndMonth = drawYearAndMonth(2014,month)
         day = data['Date & Time.1'][i]
         hour = data['Date & Time.2'][i]
         dayAndTime = drawDayAndTime(day, hour)
         
-        plt.savefig('./Images/2014/'+ str(i)+'.jpg', transparent = True, bbox_inches = 'tight', pad_inches = 0, dpi= 300)
+        plt.savefig('./Images/2014/'+ str(i)+'-'+str(month) +'-'+str(year) +'.jpg', transparent = True, bbox_inches = 'tight', pad_inches = 0, dpi= 300)
         
         scat.remove()
         yearAndMonth.remove()
