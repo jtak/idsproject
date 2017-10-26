@@ -32,11 +32,13 @@ def plot_traffic_and_aq(data, month, placename, year):
     ax1.set_ylabel("Air quality ")
     
     ax2 = ax1.twinx()
-    ax2.bar(left= list(range(24)), height=placetraffic[24:], label="Cars", alpha = 0.5)
+    ax2.bar(left= list(range(24)), height=placetraffic[:24], label="Cars", alpha = 0.5)
     
     ax2.set_ylabel("Cars")
     #ax1.set_ylim(0, np.round(np.max(place.values), decimals = 0) +10)
     ax1.set_ylim(0, 125)
+    ax2.set_ylim(0, 3500)
+    
     kuva = "./pics/" + placename + str(month) + str(year)
     plt.title(placename + ", " + monthnames[month] + " " + str(year))
     plt.legend()
@@ -46,8 +48,8 @@ def plot_traffic_and_aq(data, month, placename, year):
     #plt.clf()
     #plt.cla()
 
-interesting_places = ['Mannerheimintie', 'Mäkelänkatu2', 'Kallio2', 'Tikkurila3', 'Vartiokylä']
-months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+interesting_places = ['Mannerheimintie', 'Mäkelänkatu2', 'Kallio2', 'Tikkurila3']
+months = [9, 10]
 
 for place in interesting_places:
     for month in months:
