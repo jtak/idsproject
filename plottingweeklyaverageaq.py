@@ -16,7 +16,7 @@ for weekday in range(5):
     asd, = ax1.plot(list(range(0,24)), placedata, linewidth=2.5, color=colours[weekday], label = daynames[weekday])
     plt.legend(bbox_to_anchor = (1.15,1), loc = 2, borderaxespad = 0)
 
-plt.title('Kallio2 - March - 2015')
+plt.title('Kallio2, March 2015')
 ax1.set_xlabel("Hour")
 ax1.set_ylabel("Air quality ")
     
