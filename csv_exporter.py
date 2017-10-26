@@ -13,6 +13,8 @@ def convertExcelToCsv(file):
     data['Date & Time'] = data['Date & Time'].apply(lambda x: x.replace(minute = 0) if x.minute == 59 else x.replace(hour = x.hour -1))
     data = data.set_index(data["Date & Time"])
     
+    data.replace(0,np.nan, inplace = True)
+    
     year = str(data["Date & Time"][1].year)
     data = data.drop(['Date & Time'],1)
     
