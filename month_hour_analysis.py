@@ -6,7 +6,6 @@ import sys
 
 def count_month_hour_avgs(file):
     data = pd.read_csv(file)
-    #data = pd.read_csv("./resources/raw_data2014.csv")
     dn = data['Date & Time'].str.split(' ')
     data['Time'] = [val[1][:-3] for val in dn]
     data["Date & Time"] = pd.to_datetime(data["Date & Time"])

@@ -10,16 +10,16 @@ def plot_aq(data, month, placename, year):
     daynames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     monthnames = ['asd', 'January', 'February', 'March', 'April', 'May', 'June', 
               'July', 'August', 'September', 'October', 'November', 'December']
-    colours = ['r', 'g', 'b', 'y', 'orange']
+    colours = ['black','black','black','black', 'black', 'orange','red']
         
     fig, ax1 = plt.subplots(figsize=(8, 6), dpi=100)
         
-    for weekday in range(5):
+    for weekday in range(7):
         placedata = march[placename].iloc[24*weekday:24*(weekday+1)]
-        asd, = ax1.plot(list(range(0,24)), placedata, linewidth=2.5, color=colours[weekday], label = daynames[weekday])
-        plt.legend(bbox_to_anchor = (1.15,1), loc = 2, borderaxespad = 0)
+        asd, = ax1.plot(list(range(0,24)), placedata, linewidth=2.5, color = colours[weekday],label = daynames[weekday])
+        plt.legend(bbox_to_anchor = (1.10,1), loc = 2, borderaxespad = 0)
     
-    plt.title(placename + ', ' + monthnames[month] + str(year))
+    plt.title(placename + ' weekends, ' + monthnames[month] + str(year))
     ax1.set_xlabel("Hour")
     ax1.set_ylabel("Air quality ")
         
@@ -27,10 +27,10 @@ def plot_aq(data, month, placename, year):
     
     plt.subplots_adjust(right=0.70)
     
-    plt.savefig(placename + monthnames[month] + str(year) +'.png')
+    plt.savefig('./pics/' + placename + monthnames[month] + str(year) +'.png')
 
-months = [3,6,9,10]
-places = ['Mäkelänkatu2', 'Mannerheimintie', 'Tikkurila3']
+months = [10]
+places = ['Mäkelänkatu2', 'Tikkurila3']
 
 for val in places:
     for i in months:    
