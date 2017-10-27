@@ -1,8 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-data14 = pd.read_csv('./resources/month_average_weeks2014.csv')
-data15 = pd.read_csv('./resources/month_average_weeks2015.csv')
 data16 = pd.read_csv('./resources/month_average_weeks2016.csv')
 
 traffic = pd.read_csv('./resources/traffic_columns.csv')
@@ -12,7 +10,7 @@ def plot_traffic_and_aq(data, month, placename, year):
     placetraffic = traffic[placename]
     place = data[data['Date & Time'] == month][placename]
     
-    monthnames = ['asd', 'January', 'February', 'March', 'April', 'May', 'June', 
+    monthnames = ['', 'January', 'February', 'March', 'April', 'May', 'June', 
               'July', 'August', 'September', 'October', 'November', 'December']
     
     daynames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -43,9 +41,10 @@ def plot_traffic_and_aq(data, month, placename, year):
     
     plt.subplots_adjust(right=0.70)
     plt.savefig(kuva)
+    plt.savefig(placename + monthnames[month] + str(year) +'.png')
 
-plot_traffic_and_aq(data15, 3, 'Kallio2', 2015)
 
+#an example for plotting some places
 interesting_places = ['Mannerheimintie', 'Mäkelänkatu2', 'Kallio2', 'Tikkurila3']
 months = [9, 10]
 
