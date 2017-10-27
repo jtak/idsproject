@@ -1,4 +1,4 @@
-# Visualizing the air quality in the capital region
+# Exploring the air quality in the capital region
 
 For programming we used Python, and especially Pandas was a very helpful tool. However, to cover what we wanted to do, we created a few useful tools to visualize and analyze the data we found.
 
