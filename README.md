@@ -1,6 +1,6 @@
 # Exploring the air quality in the capital region
 
-For programming we used Python, and especially Pandas was a very helpful tool. However, to cover what we wanted to do, we created a few useful tools to visualize and analyze the data we found.
+For programming we used Python, and especially Pandas was a very helpful tool. However, to cover what we wanted to do, we created a few useful tools to clean, visualize and analyze the data.
 
 ### Tools 
 * **average_weeks.py** , creates a representation for an average week from each month for every measurement station
