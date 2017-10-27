@@ -13,6 +13,8 @@ For programming we used Python, and especially Pandas was a very helpful tool. H
 * **split_weekends.py** , splits the data to working days and weekends for later manipulation.
 * **traffic_quantities.py** , reads data from an excel file, chooses matching measurement stations, reshapes the data to match the accuracy of the air quality data. Finally saves a clean .csv file.
 * **weekly_images.py** , visualizes the level of air quality on a map with color and size changing circles on a map. The larger the circle is, the more pollution there are. 
+* **map_test.py** , some experiments in drawing a map of Helsinki. We initially thought we would draw the map using data from the National Land Survey but ultimately we didn't have time for it and had to find a picture to draw on. 
+
 
 
 ### Data sources
